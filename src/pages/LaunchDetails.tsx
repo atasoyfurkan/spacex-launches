@@ -1,20 +1,15 @@
 import { useQuery } from '@apollo/client';
-import { Card, Descriptions, Skeleton, Image } from 'antd';
+import { Card, Descriptions, Skeleton } from 'antd';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { GET_LAUNCH_DETAILS } from '../utils/queries';
 import { LaunchDetailed } from "../utils/types"
-
 
 const LaunchDetail: React.FC = () => {
   const { id } = useParams()
 
   const { loading, error, data } = useQuery<LaunchDetailed>(GET_LAUNCH_DETAILS,
     { variables: { id: id } });
-
-  console.log(data);
-
-
 
   return (
     <Card>
@@ -43,25 +38,5 @@ const LaunchDetail: React.FC = () => {
     </Card>
   )
 };
-
-// export interface LaunchDetailed {
-//   launch: {
-//     mission_name: string;
-//     launch_date_local: string;
-//     launch_site: {
-//       site_name: string;
-//     };
-//     links: {
-//       wikipedia: string;
-//       article_link: string;
-//     };
-//     launch_success: boolean;
-//     details: string;
-//     rocket: {
-//       rocket_name: string;
-//       rocket_type: string;
-//     };
-//   };
-// }
 
 export default LaunchDetail;
